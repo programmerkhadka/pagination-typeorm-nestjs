@@ -18,8 +18,6 @@ export class CategoryController {
   findAll(
     @Query() pageOptionsDto: PageOptionsDto,
   ): Promise<PageDto<CategoryDto>> {
-    console.log('PageOptionsDto==', pageOptionsDto);
-
     return this.categoryService.findAll(pageOptionsDto);
   }
 

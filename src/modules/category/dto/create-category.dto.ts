@@ -9,5 +9,6 @@ export class CreateCategoryDto {
   readonly slug: string;
 
   @IsBoolean()
+  @IsOptional()
   readonly show_on_dropdown: boolean;
 }
