@@ -6,8 +6,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
-    env_file:
-      - .env
     volumes:
       - '.:/app'
     networks:
@@ -20,14 +18,15 @@ services:
     image: postgres:15.1
     restart: always
     ports:
-      - 5432:5432
+      - '${FORWARD_POSTGRES_PORT:-5432}:5432'
     networks:
       - stacknet
     volumes:
-      - 'nestpostgres:/var/lib/postgresql/data'
-    env_file:
-      - docker.env
-
+      - 'pgdatabase:/var/lib/postgresql/data'
+    environment:
+      #- POSTGRES_USER='${POSTGRES_USER:-postgres}' // Default user is postgress
+      - POSTGRES_PASSWORD='${POSTGRES_PASSWORD:-password}'
+      #- POSTGRES_DB='${POSTGRES_DB:-postgres}' // There is a default db postgress
   pgadmin:
     image: dpage/pgadmin4:6.18
     restart: always
@@ -36,21 +35,22 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - 'nestpostgres:/var/lib/postgresql/data'
-    env_file:
-      - docker.env
+      - 'pgdatabase:/var/lib/postgresql/data'
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=password
 
-  mailhog:
-    image: 'mailhog/mailhog:latest'
-    ports:
-      - '${FORWARD_MAILHOG_PORT:-1025}:1025'
-      - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
-    networks:
-      - stacknet
+  #mailhog:
+  #image: 'mailhog/mailhog:latest'
+  #ports:
+  #- '${FORWARD_MAILHOG_PORT:-1025}:1025'
+  #- '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+  #networks:
+  #- stacknet
 
 networks:
   stacknet:
     driver: bridge
 volumes:
-  nestpostgres:
+  pgdatabase:
     driver: local
