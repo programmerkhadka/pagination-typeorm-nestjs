@@ -18,15 +18,15 @@ services:
     image: postgres:15.1
     restart: always
     ports:
-      - '${FORWARD_POSTGRES_PORT:-5432}:5432'
+      - '5432:5432'
     networks:
       - stacknet
     volumes:
-      - 'pgdatabase:/var/lib/postgresql/data'
+      - 'db:/var/lib/postgresql/data'
     environment:
-      #- POSTGRES_USER='${POSTGRES_USER:-postgres}' // Default user is postgress
-      - POSTGRES_PASSWORD='${POSTGRES_PASSWORD:-password}'
-      #- POSTGRES_DB='${POSTGRES_DB:-postgres}' // There is a default db postgress
+      - POSTGRES_USER=postgres # default user  postgress
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres #default db postgress
   pgadmin:
     image: dpage/pgadmin4:6.18
     restart: always
@@ -35,7 +35,7 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - 'pgdatabase:/var/lib/postgresql/data'
+      - 'db:/var/lib/postgresql/data'
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
       - PGADMIN_DEFAULT_PASSWORD=password
@@ -52,5 +52,5 @@ networks:
   stacknet:
     driver: bridge
 volumes:
-  pgdatabase:
+  db:
     driver: local
