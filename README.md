@@ -30,6 +30,13 @@ Purpose of this repository is to help those developer who want to dip dive into 
 
 Must have docker installation in the machine as entire project is dockerized.
 
+## Technology Stack
+
+i. Node 18 <br>
+ii. [Nest] [10.3.9] (https://github.com/nestjs/nest) <br>
+iii. Postgress 15.1 <br>
+iv. PgAdmin 4:6.18 <br>
+
 ## Installation
 
 ```bash
@@ -45,7 +52,7 @@ $ docker-compose up
 # watch mode
 $ npm run start:dev
 
-# to feed the data
+# to seed the data
 $ npm run seed
 
 ```
