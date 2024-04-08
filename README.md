@@ -24,7 +24,7 @@
 
 ## Description
 
-Purpose of this repository is to help those developer who want to dip dive with [Nest](https://github.com/nestjs/nest) less effort during learning curve
+Purpose of this repository is to help those developer who want to dip dive into [Nest](https://github.com/nestjs/nest) with less effort during learning curve
 
 ## Prerequesite
 
@@ -52,9 +52,9 @@ $ npm run seed
 
 ## Key feature of the Repository
 
-i. Dockirazation of nestjs aplication with postgres SQL
-i. Api documentation using Swagger
-ii. Dynamic Pagination on get request of the records
-iii. Seeder implementation
+i. Dockirazation of nestjs aplication with postgres SQL <br>
+i. Api documentation using Swagger <br>
+ii. Dynamic Pagination on get request of the records <br>
+iii. Seeder implementation <br>
 
 ## Support
