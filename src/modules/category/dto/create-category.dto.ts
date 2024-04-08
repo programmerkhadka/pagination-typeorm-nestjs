@@ -1,14 +1,18 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsOptional, IsString } from 'class-validator';
 
 export class CreateCategoryDto {
+  @ApiProperty()
   @IsString()
-  readonly name: string;
+  name: string;
 
+  @ApiProperty()
   @IsString()
   @IsOptional()
-  readonly slug: string;
+  slug: string;
 
+  @ApiProperty()
   @IsBoolean()
   @IsOptional()
-  readonly show_on_dropdown: boolean;
+  show_on_dropdown: boolean;
 }
